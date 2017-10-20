@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import appReducer from './app.reducer';
-import githubReducer from './github.reducer';
+import fileReducer from './files.reducer';
 
 export default () => combineReducers({
-  app: appReducer,
-  github: githubReducer,
+  files: fileReducer,
 });

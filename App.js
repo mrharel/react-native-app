@@ -11,9 +11,10 @@ import { createLogger } from 'redux-logger';
 import { StackNavigator } from 'react-navigation';
 import createReducer from './src/reducers';
 import API from './src/API';
-import GithubPage from './src/pages/github';
-import MenuPage from './src/pages/menu';
-
+//import GithubPage from './src/pages/github';
+//import MenuPage from './src/pages/menu';
+import MainPage from './src/pages/main';
+import FilePreviewPage from './src/pages/preview';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -43,13 +44,12 @@ const store = configureStore({});
 API.setStore(store);
 
 const AppNavigation = StackNavigator({
-  Home: { screen: MenuPage },
-  Github: { screen: GithubPage },
+  Home: { screen: MainPage },
+  FilePreview: { screen: FilePreviewPage },
 });
 
 export default class App extends Component<{}> {
   render() {
-    console.log("Hi");
     return (
       <Provider store={store}>
         <View style={styles.container}>
