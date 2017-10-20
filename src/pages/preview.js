@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const BoldText = ({ children }) => <Text style={styles.boldText}>{children}</Text>;
 
@@ -40,6 +41,19 @@ class FilePreviewPage extends React.Component {
     );
   }
 }
+
+FilePreviewPage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  files: PropTypes.arrayOf({
+    fileName: PropTypes.string.isRequired,
+    fileData: PropTypes.any,
+    uploadedAt: PropTypes.number.isRequired,
+    fileSize: PropTypes.number.isRequired,
+    filePath: PropTypes.string.isRequired,
+    fileType: PropTypes.string.isRequired,
+  }),
+  selectedFileIndex: PropTypes.number,
+};
 
 const mapStateToProps = state => ({
   files: state.files.files,

@@ -4,6 +4,7 @@ import {
   View,
   FlatList,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import EmptyList from '../components/empty-list';
 import AddFileButton from '../components/add-button';
@@ -47,6 +48,20 @@ class MainPage extends React.Component {
     );
   }
 }
+
+MainPage.propTypes = {
+  files: PropTypes.arrayOf({
+    fileName: PropTypes.string.isRequired,
+    fileData: PropTypes.any,
+    uploadedAt: PropTypes.number.isRequired,
+    fileSize: PropTypes.number.isRequired,
+    filePath: PropTypes.string.isRequired,
+    fileType: PropTypes.string.isRequired,
+  }),
+  error: PropTypes.string,
+  navigation: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   files: state.files.files,

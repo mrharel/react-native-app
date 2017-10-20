@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class FileListItem extends React.Component {
   onPress = () => {
@@ -30,6 +31,17 @@ export default class FileListItem extends React.Component {
     );
   }
 }
+
+FileListItem.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    item: PropTypes.shape({
+      fileName: PropTypes.string.isRequired,
+      fileType: PropTypes.string.isRequired,
+    }),
+  }),
+};
 
 const styles = StyleSheet.create({
   container: {
