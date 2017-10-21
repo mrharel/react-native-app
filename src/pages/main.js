@@ -25,7 +25,7 @@ class MainPage extends React.Component {
     const { navigate } = this.props.navigation;
     this.props.dispatch(setSelectedFileAction(index));
     navigate('FilePreview');
-  };
+  }
 
   keyExtractor = (item, index) => index;
 
@@ -49,19 +49,18 @@ class MainPage extends React.Component {
   }
 }
 
-MainPage.propTypes = {
-  files: PropTypes.arrayOf({
-    fileName: PropTypes.string.isRequired,
-    fileData: PropTypes.any,
-    uploadedAt: PropTypes.number.isRequired,
-    fileSize: PropTypes.number.isRequired,
-    filePath: PropTypes.string.isRequired,
-    fileType: PropTypes.string.isRequired,
-  }),
-  error: PropTypes.string,
-  navigation: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+// MainPage.propTypes = {
+//   files: PropTypes.arrayOf(PropTypes.shape({
+//     fileName: PropTypes.string.isRequired,
+//     uploadedAt: PropTypes.number.isRequired,
+//     fileSize: PropTypes.number.isRequired,
+//     filePath: PropTypes.string.isRequired,
+//     fileType: PropTypes.string.isRequired,
+//   })),
+//   error: PropTypes.string,
+//   navigation: PropTypes.object,
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = state => ({
   files: state.files.files,

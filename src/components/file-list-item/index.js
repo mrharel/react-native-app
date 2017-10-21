@@ -4,6 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -17,6 +18,8 @@ export default class FileListItem extends React.Component {
       data: {
         item: {
           fileName,
+          fileSize,
+          filePath,
           fileType,
         },
       } = {}
@@ -25,7 +28,16 @@ export default class FileListItem extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.onPress}>
-          <Text> [{fileType}] {fileName}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <View style={styles.imageView}>
+              {fileType === 'image' &&
+                <Image
+                  source={{uri: filePath}}
+                  style={styles.imageThumb}/>
+              }
+            </View>
+            <View style={styles.textView}><Text>{fileName} / {fileSize}</Text></View>
+          </View>
         </TouchableOpacity>
       </View>
     );
@@ -38,7 +50,8 @@ FileListItem.propTypes = {
     index: PropTypes.number.isRequired,
     item: PropTypes.shape({
       fileName: PropTypes.string.isRequired,
-      fileType: PropTypes.string.isRequired,
+      filePath: PropTypes.string.isRequired,
+      fileSize: PropTypes.number.isRequired,
     }),
   }),
 };
@@ -49,4 +62,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 10,
   },
+  imageView: {
+    width: 100,
+    height: 100,
+  },
+  imageThumb: {
+    width: 100,
+    height: 100,
+  },
+  textView: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "center",
+  }
 });
